@@ -1,12 +1,33 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
+name: 'Upload Files To Artifactory'
+description: 'Upload Files/Packages/Libraries/Anything To JFrog Artifactory'
+author: 'greenido'
 inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  userName:
+    description: 'Your Artifactory user name'
+    default: 'admin'
+  password:
+    description: 'Your Artifactory password'
+    default: 'password'  
+  artifactoryUrl:
+    description: 'Your Artifactory URL'
+    default: 'myArtifactoryURL.com'  
+  repoName:
+    description: 'Your Repo Name'
+    default: 'myRepoName'  
+  filePath:
+    description: 'Your path to the file in the repo'
+    default: 'myDir/'
+  fileName:
+    description: 'Your file name'
+    default: 'buildFile.exe'
+      
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.myInput }}
+    - ${{ inputs.userName }}
+    - ${{ inputs.password }}
+    - ${{ inputs.artifactoryUrl }}
+    - ${{ inputs.repoName }}
+    - ${{ inputs.filePath }}
+    - ${{ inputs.fileName }}
